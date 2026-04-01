@@ -1,0 +1,86 @@
+/* Google Fonts - must be first */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@import "tailwindcss";
+
+/* Techne Design Tokens */
+@theme {
+  --color-obsidian: #0B0D17;
+  --color-carbon: #12151F;
+  --color-apollo: #E8963E;
+  --color-artemis: #B8C4D8;
+  --color-eclipse: #C49A5A;
+  --color-marble: #EAECEF;
+  --color-shadow: #1E2233;
+  --color-solar: #F0A84C;
+  --color-lunar: #9AACCC;
+
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Animations */
+  --animate-fade-up: fade-up 0.8s ease-out both;
+  --animate-fade-in: fade-in 0.6s ease-out both;
+  --animate-glow-pulse: glow-pulse 3s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(2rem); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { filter: drop-shadow(0 0 20px rgba(232, 150, 62, 0.3)); }
+    50% { filter: drop-shadow(0 0 40px rgba(232, 150, 62, 0.6)); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
+/* Base */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-obsidian);
+    color: var(--color-marble);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: rgba(196, 154, 90, 0.4);
+    color: var(--color-marble);
+  }
+}
+
+/* Custom utilities */
+@utility text-gradient-gold {
+  background: linear-gradient(135deg, #E8963E, #C49A5A, #B8C4D8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@utility text-gradient-silver {
+  background: linear-gradient(135deg, #B8C4D8, #EAECEF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@utility line-glow {
+  background: linear-gradient(90deg, #E8963E, #C49A5A, #B8C4D8);
+  height: 1px;
+}

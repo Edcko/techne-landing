@@ -1,0 +1,87 @@
+---
+const navLinks = [
+  { label: 'Services', href: '#services' },
+  { label: 'About', href: '#about' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-obsidian/70 border-b border-shadow/50">
+  <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-3 group cursor-pointer">
+      <!-- Mini eclipse logo -->
+      <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="transition-transform duration-300 group-hover:scale-110">
+        <circle cx="24" cy="32" r="18" fill="#E8963E" opacity="0.9"/>
+        <circle cx="40" cy="32" r="16" fill="#0B0D17"/>
+        <path d="M40 16 A16 16 0 0 1 40 48 A16 16 0 0 0 40 16" fill="#B8C4D8" opacity="0.8"/>
+        <rect x="4" y="4" width="56" height="56" rx="12" stroke="#1E2233" stroke-width="1.5" fill="none"/>
+      </svg>
+      <span class="font-heading font-semibold text-lg text-marble tracking-tight">Techne</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <div class="hidden md:flex items-center gap-8">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="text-sm text-artemis/70 hover:text-marble transition-colors duration-200 cursor-pointer font-body"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="#contact"
+        class="text-sm px-5 py-2 rounded-lg bg-apollo/10 text-apollo border border-apollo/20 hover:bg-apollo/20 hover:border-apollo/40 transition-all duration-200 cursor-pointer font-medium"
+      >
+        Get in touch
+      </a>
+    </div>
+
+    <!-- Mobile menu button -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden p-2 text-artemis/70 hover:text-marble transition-colors cursor-pointer"
+      aria-label="Toggle menu"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden bg-carbon/95 backdrop-blur-lg border-t border-shadow/50">
+    <div class="px-6 py-4 flex flex-col gap-3">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="text-sm text-artemis/70 hover:text-marble transition-colors py-2 cursor-pointer font-body mobile-nav-link"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="#contact"
+        class="text-sm px-5 py-2.5 rounded-lg bg-apollo/10 text-apollo border border-apollo/20 hover:bg-apollo/20 transition-all text-center cursor-pointer font-medium mt-2 mobile-nav-link"
+      >
+        Get in touch
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+  // Close on link click
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      menu?.classList.add('hidden');
+    });
+  });
+</script>

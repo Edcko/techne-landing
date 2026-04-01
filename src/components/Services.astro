@@ -1,0 +1,92 @@
+---
+const services = [
+  {
+    icon: 'globe',
+    title: 'Web Development',
+    description: 'Modern, responsive web applications built with cutting-edge frameworks. From landing pages to complex SaaS platforms.',
+    accent: 'apollo',
+  },
+  {
+    icon: 'smartphone',
+    title: 'Mobile Apps',
+    description: 'Cross-platform mobile experiences that feel native. Flutter, React Native, and beyond — your app, everywhere.',
+    accent: 'artemis',
+  },
+  {
+    icon: 'zap',
+    title: 'Automation',
+    description: 'Intelligent workflows that save time and eliminate errors. APIs, bots, and custom integrations tailored to your process.',
+    accent: 'eclipse',
+  },
+  {
+    icon: 'layers',
+    title: 'SaaS Solutions',
+    description: 'End-to-end SaaS products designed for scale. Architecture, development, deployment, and ongoing support.',
+    accent: 'solar',
+  },
+];
+---
+
+<section id="services" data-animate class="py-32 px-6">
+  <div class="max-w-6xl mx-auto">
+    <!-- Section header -->
+    <div class="text-center mb-20" data-reveal>
+      <span class="text-xs tracking-[0.3em] text-eclipse/60 font-body uppercase mb-4 block">What we do</span>
+      <h2 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight mb-6">
+        Services
+      </h2>
+      <div class="w-16 h-px bg-gradient-to-r from-apollo to-artemis mx-auto"></div>
+    </div>
+
+    <!-- Services grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {services.map((service, i) => (
+        <div
+          data-reveal
+          class="group relative p-8 rounded-2xl bg-carbon/50 border border-shadow/50 hover:border-{service.accent}/20 transition-all duration-300 cursor-default"
+        >
+          <!-- Hover glow -->
+          <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            style={`background: radial-gradient(circle at 50% 0%, var(--color-${service.accent}) 0%, transparent 70%); opacity: 0.03;`}
+          ></div>
+          <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            style={`background: radial-gradient(circle at 50% 0%, ${service.accent === 'apollo' ? '#E8963E' : service.accent === 'artemis' ? '#B8C4D8' : service.accent === 'eclipse' ? '#C49A5A' : '#F0A84C'} 0%, transparent 70%); opacity: 0.04;`}
+          ></div>
+
+          <div class="relative z-10">
+            <!-- Icon -->
+            <div class="w-12 h-12 rounded-xl bg-{service.accent}/10 border border-{service.accent}/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              {service.icon === 'globe' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={service.accent === 'apollo' ? '#E8963E' : '#B8C4D8'} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+              )}
+              {service.icon === 'smartphone' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B8C4D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+                </svg>
+              )}
+              {service.icon === 'zap' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C49A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+              )}
+              {service.icon === 'layers' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F0A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
+                </svg>
+              )}
+            </div>
+
+            <h3 class="font-heading text-xl font-semibold mb-3 text-marble">
+              {service.title}
+            </h3>
+            <p class="text-artemis/50 text-sm leading-relaxed font-body">
+              {service.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
