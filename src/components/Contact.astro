@@ -1,40 +1,24 @@
 ---
 ---
 
-<section id="contact" data-animate class="py-32 px-6 relative">
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl">
-    <div class="line-glow opacity-20"></div>
-  </div>
-
+<section id="contact" data-animate class="py-32 px-6 relative" data-theme-bg>
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl"><div class="line-glow opacity-20"></div></div>
   <div class="max-w-3xl mx-auto text-center">
     <div data-reveal>
-      <span class="text-xs tracking-[0.3em] text-eclipse/60 font-body uppercase mb-4 block">Let's build</span>
-      <h2 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight mb-6">
-        Start a project
-      </h2>
+      <span class="text-xs tracking-[0.3em] uppercase mb-4 block font-body" style="color: rgba(196,154,90,0.6);" data-i18n="contact.label">Let's build</span>
+      <h2 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight mb-6" data-theme-text data-i18n="contact.title">Start a project</h2>
       <div class="w-16 h-px bg-gradient-to-r from-apollo to-artemis mx-auto mb-8"></div>
     </div>
-
-    <p data-reveal class="text-artemis/50 text-lg font-body leading-relaxed mb-12 max-w-xl mx-auto">
-      Have an idea? Need a technical partner? We'd love to hear from you. 
-      Tell us about your project and let's create something extraordinary together.
-    </p>
-
+    <p data-reveal class="text-lg font-body leading-relaxed mb-12 max-w-xl mx-auto" data-theme-muted data-i18n="contact.subtitle">Have an idea? Need a technical partner?</p>
     <div data-reveal class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-      <a
-        href="mailto:hello@techne.ascencia.com"
-        class="group inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-apollo text-obsidian font-heading font-semibold text-sm tracking-wide hover:bg-solar transition-colors duration-200 cursor-pointer shadow-lg shadow-apollo/20"
-      >
+      <a href="mailto:hello@techne.ascencia.com"
+        class="group inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-apollo text-obsidian font-heading font-semibold text-sm tracking-wide hover:bg-solar transition-all duration-200 cursor-pointer shadow-lg shadow-apollo/20">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
         </svg>
-        hello@techne.ascencia.com
+        <span data-i18n="contact.cta">hello@techne.ascencia.com</span>
       </a>
     </div>
-
-    <!-- Trust line -->
-    <p data-reveal class="mt-16 text-artemis/30 text-sm font-body">
-      Fast response. No obligations. Let's talk.
-    </p>
+    <p data-reveal class="mt-16 text-sm font-body" data-theme-muted data-i18n="contact.trust">Fast response. No obligations.</p>
   </div>
 </section>

@@ -1,10 +1,8 @@
-/* Google Fonts - must be first */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
-
 @import "tailwindcss";
 
-/* Techne Design Tokens */
+/* Techne Design Tokens — Dark mode as default */
 @theme {
+  /* Dark (default) */
   --color-obsidian: #0B0D17;
   --color-carbon: #12151F;
   --color-apollo: #E8963E;
@@ -15,6 +13,18 @@
   --color-solar: #F0A84C;
   --color-lunar: #9AACCC;
 
+  /* Light mode */
+  --color-cream: #F8F7F4;
+  --color-white-card: #FFFFFF;
+  --color-ink: #1A1A2E;
+  --color-muted-text: #5A5A7A;
+  --color-light-border: #E2E0DC;
+  --color-apollo-light: #D4852F;
+  --color-artemis-light: #6B7A96;
+  --color-eclipse-light: #B08A4A;
+  --color-shadow-light: #D8D5D0;
+  --color-carbon-light: #F0EFEC;
+
   --font-heading: 'Space Grotesk', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -24,31 +34,22 @@
   --animate-fade-in: fade-in 0.6s ease-out both;
   --animate-glow-pulse: glow-pulse 3s ease-in-out infinite;
   --animate-float: float 6s ease-in-out infinite;
-  --animate-shimmer: shimmer 2s ease-in-out infinite;
 
   @keyframes fade-up {
     from { opacity: 0; transform: translateY(2rem); }
     to { opacity: 1; transform: translateY(0); }
   }
-
   @keyframes fade-in {
     from { opacity: 0; }
     to { opacity: 1; }
   }
-
   @keyframes glow-pulse {
     0%, 100% { filter: drop-shadow(0 0 20px rgba(232, 150, 62, 0.3)); }
     50% { filter: drop-shadow(0 0 40px rgba(232, 150, 62, 0.6)); }
   }
-
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
-  }
-
-  @keyframes shimmer {
-    0% { background-position: -200% center; }
-    100% { background-position: 200% center; }
   }
 }
 
@@ -63,14 +64,19 @@
     background-color: var(--color-obsidian);
     color: var(--color-marble);
     overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  /* Light mode overrides */
+  body.light {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
   }
 
   ::selection {
     background-color: rgba(196, 154, 90, 0.4);
-    color: var(--color-marble);
   }
 
-  /* Glassmorphism utility classes */
   .glass {
     background: rgba(18, 21, 31, 0.6);
     backdrop-filter: blur(16px);
@@ -78,14 +84,11 @@
     border: 1px solid rgba(30, 34, 51, 0.5);
   }
 
-  .glass-subtle {
-    background: rgba(18, 21, 31, 0.3);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(30, 34, 51, 0.3);
+  body.light .glass {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(226, 224, 220, 0.6);
   }
 
-  /* Navbar scrolled state */
   header.scrolled {
     background: rgba(11, 13, 23, 0.85) !important;
     backdrop-filter: blur(20px) !important;
@@ -93,12 +96,115 @@
     border-bottom-color: rgba(30, 34, 51, 0.8);
   }
 
-  /* Smooth transitions for interactive elements */
+  body.light header.scrolled {
+    background: rgba(248, 247, 244, 0.9) !important;
+    border-bottom-color: rgba(226, 224, 220, 0.6);
+  }
+
   a, button {
     transition: all 0.2s ease;
   }
 
-  /* Reduced motion */
+  /* Theme-aware elements */
+  [data-theme-bg] {
+    background-color: var(--color-obsidian);
+    transition: background-color 0.4s ease;
+  }
+  body.light [data-theme-bg] {
+    background-color: var(--color-cream);
+  }
+
+  [data-theme-card] {
+    background-color: rgba(18, 21, 31, 0.5);
+    border-color: rgba(30, 34, 51, 0.5);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+  }
+  body.light [data-theme-card] {
+    background-color: var(--color-white-card);
+    border-color: var(--color-light-border);
+  }
+
+  [data-theme-text] {
+    color: var(--color-marble);
+    transition: color 0.4s ease;
+  }
+  body.light [data-theme-text] {
+    color: var(--color-ink);
+  }
+
+  [data-theme-muted] {
+    color: rgba(184, 196, 216, 0.5);
+    transition: color 0.4s ease;
+  }
+  body.light [data-theme-muted] {
+    color: var(--color-muted-text);
+  }
+
+  [data-theme-nav] {
+    background-color: rgba(11, 13, 23, 0.5);
+    transition: background-color 0.4s ease;
+  }
+  body.light [data-theme-nav] {
+    background-color: rgba(248, 247, 244, 0.6);
+  }
+
+  [data-theme-nav-text] {
+    color: rgba(184, 196, 216, 0.6);
+    transition: color 0.4s ease;
+  }
+  body.light [data-theme-nav-text] {
+    color: var(--color-artemis-light);
+  }
+
+  [data-theme-cta] {
+    background-color: rgba(232, 150, 62, 0.1);
+    color: var(--color-apollo);
+    border-color: rgba(232, 150, 62, 0.2);
+    transition: all 0.4s ease;
+  }
+  body.light [data-theme-cta] {
+    background-color: rgba(232, 150, 62, 0.08);
+    color: var(--color-apollo-light);
+    border-color: rgba(232, 150, 62, 0.15);
+  }
+
+  [data-theme-outline] {
+    border-color: rgba(184, 196, 216, 0.2);
+    color: rgba(184, 196, 216, 0.8);
+    transition: all 0.4s ease;
+  }
+  body.light [data-theme-outline] {
+    border-color: rgba(26, 26, 46, 0.2);
+    color: var(--color-ink);
+  }
+
+  /* Eclipse SVG theme */
+  [data-theme-eclipse-bg] {
+    fill: #0B0D17;
+    transition: fill 0.4s ease;
+  }
+  body.light [data-theme-eclipse-bg] {
+    fill: #FFFFFF;
+  }
+
+  /* Constellation hide in light mode */
+  .constellation-bg {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+  }
+  body.light .constellation-bg {
+    opacity: 0.15;
+  }
+
+  /* Hero glow */
+  .hero-glow {
+    opacity: 0.15;
+    transition: opacity 0.4s ease;
+  }
+  body.light .hero-glow {
+    opacity: 0.08;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
@@ -109,16 +215,8 @@
   }
 }
 
-/* Custom utilities */
 @utility text-gradient-gold {
   background: linear-gradient(135deg, #E8963E, #C49A5A, #B8C4D8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-@utility text-gradient-silver {
-  background: linear-gradient(135deg, #B8C4D8, #EAECEF);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

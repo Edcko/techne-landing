@@ -1,6 +1,7 @@
 ---
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import '../styles/global.css';
 ---
 
 <!doctype html>
@@ -9,131 +10,125 @@ import Footer from '../components/Footer.astro';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0B0D17" />
-
     <title>Techne — Software Development Studio</title>
     <meta name="description" content="Techne builds modern web applications, mobile apps, and intelligent automations. Masterful craft. Infinite solutions." />
-    <meta name="author" content="Edcko — Techne" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://techne.ascencia.com/techne/" />
-
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://techne.ascencia.com/techne/" />
     <meta property="og:title" content="Techne — Software Development Studio" />
-    <meta property="og:description" content="Techne builds modern web applications, mobile apps, and intelligent automations. Masterful craft. Infinite solutions." />
+    <meta property="og:description" content="Techne builds modern web applications, mobile apps, and intelligent automations." />
     <meta property="og:image" content="https://techne.ascencia.com/techne/og-image.png" />
-    <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Techne" />
-
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://techne.ascencia.com/techne/" />
     <meta name="twitter:title" content="Techne — Software Development Studio" />
-    <meta name="twitter:description" content="Techne builds modern web applications, mobile apps, and intelligent automations. Masterful craft. Infinite solutions." />
-    <meta name="twitter:image" content="https://techne.ascencia.com/techne/og-image.png" />
-
-    <!-- Favicon -->
+    <meta name="twitter:description" content="Techne builds modern web applications, mobile apps, and intelligent automations." />
     <link rel="icon" type="image/svg+xml" href="/techne/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   </head>
-  <body class="min-h-screen bg-obsidian text-marble font-body antialiased">
+  <body class="min-h-screen font-body antialiased">
     <Navbar />
-    <main>
-      <slot />
-    </main>
+    <main><slot /></main>
     <Footer />
 
     <script>
-      // Lenis smooth scroll
-      import Lenis from 'lenis';
+      // ========== TRANSLATIONS ==========
+      const T: Record<string, Record<string, string>> = {
+        en: {"nav.services":"Services","nav.portfolio":"Portfolio","nav.about":"About","nav.contact":"Contact","nav.cta":"Get in touch","hero.tagline":"Masterful craft. Infinite solutions.","hero.subtitle":"Software development studio where precision meets creativity. We build web apps, mobile experiences, and intelligent automations.","hero.cta1":"View our work","hero.cta2":"Start a project","hero.stat1":"24/7","hero.stat1label":"Always on","hero.stat2":"Full Stack","hero.stat2label":"End to end","hero.stat3":"Fast","hero.stat3label":"Delivery","services.label":"What we do","services.title":"Services","services.s1title":"Web Development","services.s1desc":"Modern, responsive web applications built with cutting-edge frameworks. From landing pages to complex SaaS platforms.","services.s2title":"Mobile Apps","services.s2desc":"Cross-platform mobile experiences that feel native. Flutter, React Native, and beyond — your app, everywhere.","services.s3title":"Automation","services.s3desc":"Intelligent workflows that save time and eliminate errors. APIs, bots, and custom integrations tailored to your process.","services.s4title":"SaaS Solutions","services.s4desc":"End-to-end SaaS products designed for scale. Architecture, development, deployment, and ongoing support.","portfolio.label":"Our work","portfolio.title":"Featured Projects","portfolio.subtitle":"Real products, real impact. Here are some of the projects we've brought to life.","portfolio.p1title":"Tools Automotriz","portfolio.p1desc":"Comprehensive platform for the automotive sector. Inventory management, quotes, and service tracking with a modern, efficient interface.","portfolio.p2title":"Public Security","portfolio.p2desc":"Public security system with real-time monitoring dashboard. Modern architecture with Next.js and database optimized for high concurrency.","portfolio.cta":"Want to see your project here?","portfolio.ctalink":"Let's talk about it","testimonials.label":"Testimonials","testimonials.title":"What clients say","testimonials.q1":"The attention to detail and technical expertise exceeded our expectations. They didn't just build what we asked — they built what we actually needed.","testimonials.q1role":"Tools Automotriz","testimonials.q2":"Fast, reliable, and always available. The team operates around the clock with AI-assisted development means things move incredibly fast.","testimonials.q2role":"Public Security","about.label":"Who we are","about.title":"About Techne","about.p1":"— the Greek concept of art, craft, and mastery. We chose this name because we believe software development is a craft: it requires skill, intention, and relentless pursuit of quality.","about.p2":"Our identity is built on the duality of the sun and the moon — always active, always watching, always building. Like Apollo and Artemis, we never sleep so your projects never stop.","about.edname":"Ed","about.edrole":"Founder & Developer","about.eddesc":"Full-stack developer & DevOps. The architect behind every project.","about.artname":"Artemisa","about.artrole":"AI Assistant","about.artdesc":"The moon — precision, calm, and unwavering attention to detail.","about.aplname":"Apolo","about.aplrole":"AI Assistant","about.apldesc":"The sun — energy, action, and relentless drive to ship.","contact.label":"Let's build","contact.title":"Start a project","contact.subtitle":"Have an idea? Need a technical partner? We'd love to hear from you. Tell us about your project and let's create something extraordinary together.","contact.cta":"hello@techne.ascencia.com","contact.trust":"Fast response. No obligations. Let's talk.","footer.rights":"Techne. Masterful craft. Infinite solutions.","scroll":"SCROLL"},
+        es: {"nav.services":"Servicios","nav.portfolio":"Portafolio","nav.about":"Nosotros","nav.contact":"Contacto","nav.cta":"Contáctanos","hero.tagline":"Oficio maestro. Soluciones infinitas.","hero.subtitle":"Estudio de desarrollo de software donde la precisión se encuentra con la creatividad. Construimos apps web, experiencias móviles e automatizaciones inteligentes.","hero.cta1":"Ver nuestro trabajo","hero.cta2":"Iniciar proyecto","hero.stat1":"24/7","hero.stat1label":"Siempre activos","hero.stat2":"Full Stack","hero.stat2label":"De principio a fin","hero.stat3":"Rápido","hero.stat3label":"Entrega","services.label":"Lo que hacemos","services.title":"Servicios","services.s1title":"Desarrollo Web","services.s1desc":"Aplicaciones web modernas y responsivas construidas con frameworks de vanguardia. Desde landing pages hasta plataformas SaaS complejas.","services.s2title":"Apps Móviles","services.s2desc":"Experiencias móviles multiplataforma que se sienten nativas. Flutter, React Native y más — tu app, en todas partes.","services.s3title":"Automatización","services.s3desc":"Flujos de trabajo inteligentes que ahorran tiempo y eliminan errores. APIs, bots e integraciones personalizadas adaptadas a tu proceso.","services.s4title":"Soluciones SaaS","services.s4desc":"Productos SaaS de principio a fin diseñados para escalar. Arquitectura, desarrollo, despliegue y soporte continuo.","portfolio.label":"Nuestro trabajo","portfolio.title":"Proyectos Destacados","portfolio.subtitle":"Productos reales, impacto real. Estos son algunos de los proyectos que hemos dado vida.","portfolio.p1title":"Tools Automotriz","portfolio.p1desc":"Plataforma integral para el sector automotriz. Gestión de inventario, cotizaciones y seguimiento de servicios con una interfaz moderna y eficiente.","portfolio.p2title":"Public Security","portfolio.p2desc":"Sistema de seguridad pública con panel de monitoreo en tiempo real. Arquitectura moderna con Next.js y base de datos optimizada para alta concurrencia.","portfolio.cta":"¿Quieres ver tu proyecto aquí?","portfolio.ctalink":"Hablemos de ello","testimonials.label":"Testimonios","testimonials.title":"Lo que dicen nuestros clientes","testimonials.q1":"La atención al detalle y la experiencia técnica superaron nuestras expectativas. No solo construyeron lo que pedimos — construyeron lo que realmente necesitábamos.","testimonials.q1role":"Tools Automotriz","testimonials.q2":"Rápidos, confiables y siempre disponibles. El equipo opera las 24 horas con desarrollo asistido por IA significa que las cosas avanzan increíblemente rápido.","testimonials.q2role":"Public Security","about.label":"Quiénes somos","about.title":"Sobre Techne","about.p1":"— el concepto griego de arte, oficio y maestría. Elegimos este nombre porque creemos que el desarrollo de software es un oficio: requiere habilidad, intención y búsqueda incansable de calidad.","about.p2":"Nuestra identidad se construye sobre la dualidad del sol y la luna — siempre activos, siempre atentos, siempre construyendo. Como Apolo y Artemisa, nunca dormimos para que tus proyectos nunca se detengan.","about.edname":"Ed","about.edrole":"Fundador & Desarrollador","about.eddesc":"Desarrollador Full Stack & DevOps. El arquitecto detrás de cada proyecto.","about.artname":"Artemisa","about.artrole":"Asistente IA","about.artdesc":"La luna — precisión, calma y atención inquebrantable al detalle.","about.aplname":"Apolo","about.aplrole":"Asistente IA","about.apldesc":"El sol — energía, acción e impulso implacable por entregar.","contact.label":"Construyamos","contact.title":"Iniciar un proyecto","contact.subtitle":"¿Tienes una idea? ¿Necesitas un socio técnico? Nos encantaría saber de ti. Cuéntanos sobre tu proyecto y creemos algo extraordinario juntos.","contact.cta":"hello@techne.ascencia.com","contact.trust":"Respuesta rápida. Sin compromisos. Hablemos.","footer.rights":"Techne. Oficio maestro. Soluciones infinitas.","scroll":"DESPLAZA"},
+      };
 
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothWheel: true,
+      let lang = (localStorage.getItem('techne-lang') as 'en' | 'es') || 'en';
+      let theme = (localStorage.getItem('techne-theme') as 'dark' | 'light') || 'dark';
+
+      function applyTheme(t: string) {
+        document.body.classList.toggle('light', t === 'light');
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', t === 'light' ? '#F8F7F4' : '#0B0D17');
+        // Toggle icons
+        document.querySelectorAll('#icon-sun, .icon-sun-m').forEach(el => el.classList.toggle('hidden', t !== 'light'));
+        document.querySelectorAll('#icon-moon, .icon-moon-m').forEach(el => el.classList.toggle('hidden', t !== 'dark'));
+      }
+
+      function applyLang(l: string) {
+        const dict = T[l] || T.en;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (key && dict[key]) el.textContent = dict[key];
+        });
+        document.documentElement.lang = l;
+        const label = l === 'en' ? 'ES' : 'EN';
+        document.querySelectorAll('#lang-label, .lang-label-m').forEach(el => el.textContent = label);
+      }
+
+      // Init
+      applyTheme(theme);
+      applyLang(lang);
+
+      // Theme toggles
+      document.getElementById('theme-toggle')?.addEventListener('click', () => {
+        theme = theme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('techne-theme', theme);
+        applyTheme(theme);
+      });
+      document.getElementById('theme-toggle-mobile')?.addEventListener('click', () => {
+        theme = theme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('techne-theme', theme);
+        applyTheme(theme);
       });
 
-      function raf(time: number) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
+      // Lang toggles
+      const toggleLang = () => {
+        lang = lang === 'en' ? 'es' : 'en';
+        localStorage.setItem('techne-lang', lang);
+        applyLang(lang);
+      };
+      document.getElementById('lang-toggle')?.addEventListener('click', toggleLang);
+      document.getElementById('lang-toggle-mobile')?.addEventListener('click', toggleLang);
 
-      // GSAP ScrollTrigger
+      // ========== LENIS ==========
+      import Lenis from 'lenis';
+      const lenis = new Lenis({ duration: 1.2, easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+      (function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); })(performance.now());
+
+      // ========== GSAP ==========
       import { gsap } from 'gsap';
       import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
       gsap.registerPlugin(ScrollTrigger);
 
-      // Scroll reveal animations
-      const sections = document.querySelectorAll('[data-animate]');
-      sections.forEach((section) => {
+      document.querySelectorAll('[data-animate]').forEach((section) => {
         const children = section.querySelectorAll('[data-reveal]');
-        gsap.fromTo(children,
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top 80%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
+        gsap.fromTo(children, { opacity: 0, y: 40 }, {
+          opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out',
+          scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none none' },
+        });
       });
 
-      // Parallax on hero eclipse
       const heroEclipse = document.querySelector('#hero-eclipse');
       if (heroEclipse) {
-        gsap.to(heroEclipse, {
-          y: 80,
-          scale: 1.05,
-          opacity: 0.6,
-          scrollTrigger: {
-            trigger: '#hero',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1,
-          },
+        gsap.to(heroEclipse, { y: 80, scale: 1.05, opacity: 0.6,
+          scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1 },
         });
       }
 
-      // Constellation nodes
-      const nodes = document.querySelectorAll('.constellation-node');
-      nodes.forEach((node) => {
+      document.querySelectorAll('.constellation-node').forEach((node) => {
         gsap.to(node, {
-          opacity: 0.3 + Math.random() * 0.5,
-          scale: 0.8 + Math.random() * 0.6,
-          duration: 2 + Math.random() * 3,
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut',
-          delay: Math.random() * 2,
+          opacity: 0.3 + Math.random() * 0.5, scale: 0.8 + Math.random() * 0.6,
+          duration: 2 + Math.random() * 3, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: Math.random() * 2,
         });
       });
 
-      // Navbar scroll effect
       const navbar = document.querySelector('header');
       if (navbar) {
-        ScrollTrigger.create({
-          start: 'top -80',
-          onEnter: () => navbar.classList.add('scrolled'),
-          onLeaveBack: () => navbar.classList.remove('scrolled'),
-        });
+        ScrollTrigger.create({ start: 'top -80', onEnter: () => navbar.classList.add('scrolled'), onLeaveBack: () => navbar.classList.remove('scrolled') });
       }
 
-      // Smooth anchor scrolling
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
           e.preventDefault();
           const href = (anchor as HTMLAnchorElement).getAttribute('href');
-          if (href) {
-            const target = document.querySelector(href);
-            if (target) lenis.scrollTo(target, { offset: -80 });
-          }
+          if (href) { const target = document.querySelector(href); if (target) lenis.scrollTo(target, { offset: -80 }); }
         });
       });
     </script>

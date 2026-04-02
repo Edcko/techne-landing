@@ -1,76 +1,44 @@
 ---
+const team = [
+  { nameKey: 'about.edname', roleKey: 'about.edrole', descKey: 'about.eddesc', accent: '#C49A5A', emoji: false, icon: 'user' },
+  { nameKey: 'about.artname', roleKey: 'about.artrole', descKey: 'about.artdesc', accent: '#B8C4D8', emoji: '🌙' },
+  { nameKey: 'about.aplname', roleKey: 'about.aplrole', descKey: 'about.apldesc', accent: '#E8963E', emoji: '☀️' },
+];
 ---
 
-<section id="about" data-animate class="py-32 px-6 relative">
-  <!-- Subtle divider -->
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl">
-    <div class="line-glow opacity-20"></div>
-  </div>
-
+<section id="about" data-animate class="py-32 px-6 relative" data-theme-bg>
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl"><div class="line-glow opacity-20"></div></div>
   <div class="max-w-6xl mx-auto">
-    <!-- Section header -->
     <div class="text-center mb-20" data-reveal>
-      <span class="text-xs tracking-[0.3em] text-eclipse/60 font-body uppercase mb-4 block">Who we are</span>
-      <h2 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight mb-6">
-        About Techne
-      </h2>
+      <span class="text-xs tracking-[0.3em] uppercase mb-4 block font-body" style="color: rgba(196,154,90,0.6);" data-i18n="about.label">Who we are</span>
+      <h2 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight mb-6" data-theme-text data-i18n="about.title">About Techne</h2>
       <div class="w-16 h-px bg-gradient-to-r from-apollo to-artemis mx-auto"></div>
     </div>
-
-    <!-- Concept -->
     <div class="max-w-3xl mx-auto text-center mb-20" data-reveal>
-      <p class="text-lg text-artemis/70 leading-relaxed font-body mb-8">
-        <span class="text-gradient-gold font-heading font-semibold text-2xl">Τέχνη</span>
-        — the Greek concept of art, craft, and mastery. 
-        We chose this name because we believe software development is a craft: 
-        it requires skill, intention, and relentless pursuit of quality.
+      <p class="text-lg leading-relaxed font-body mb-8" data-theme-muted>
+        <span class="font-heading font-semibold text-2xl text-gradient-gold">Τέχνη</span>
+        <span data-i18n="about.p1"></span>
       </p>
-      <p class="text-artemis/50 leading-relaxed font-body">
-        Our identity is built on the duality of the sun and the moon — 
-        always active, always watching, always building. 
-        Like Apollo and Artemis, we never sleep so your projects never stop.
-      </p>
+      <p class="leading-relaxed font-body" data-theme-muted data-i18n="about.p2"></p>
     </div>
-
-    <!-- Team cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-      <!-- Ed -->
-      <div data-reveal class="group text-center p-8 rounded-2xl bg-carbon/30 border border-shadow/40 hover:border-eclipse/30 transition-all duration-300">
-        <div class="w-16 h-16 rounded-2xl bg-eclipse/10 border border-eclipse/20 flex items-center justify-center mx-auto mb-5">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C49A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-          </svg>
+      {team.map((member) => (
+        <div data-reveal class="group text-center p-8 rounded-2xl transition-all duration-300" data-theme-card>
+          <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5"
+            style={`background: ${member.accent}15; border: 1px solid ${member.accent}20;`}>
+            {member.icon === 'user' ? (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={member.accent} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+              </svg>
+            ) : (
+              <span class="text-2xl">{member.emoji}</span>
+            )}
+          </div>
+          <h3 class="font-heading text-lg font-semibold mb-1" data-theme-text data-i18n={member.nameKey}></h3>
+          <p class="text-xs tracking-widest uppercase mb-3 font-body" style={`color: ${member.accent};`} data-i18n={member.roleKey}></p>
+          <p class="text-sm font-body leading-relaxed" data-theme-muted data-i18n={member.descKey}></p>
         </div>
-        <h3 class="font-heading text-lg font-semibold text-marble mb-1">Ed</h3>
-        <p class="text-xs tracking-widest text-eclipse/60 uppercase mb-3 font-body">Founder & Developer</p>
-        <p class="text-artemis/40 text-sm font-body leading-relaxed">
-          Full-stack developer & DevOps. The architect behind every project.
-        </p>
-      </div>
-
-      <!-- Artemisa -->
-      <div data-reveal class="group text-center p-8 rounded-2xl bg-carbon/30 border border-shadow/40 hover:border-artemis/30 transition-all duration-300">
-        <div class="w-16 h-16 rounded-2xl bg-artemis/10 border border-artemis/20 flex items-center justify-center mx-auto mb-5">
-          <span class="text-2xl">🌙</span>
-        </div>
-        <h3 class="font-heading text-lg font-semibold text-marble mb-1">Artemisa</h3>
-        <p class="text-xs tracking-widest text-artemis/60 uppercase mb-3 font-body">AI Assistant</p>
-        <p class="text-artemis/40 text-sm font-body leading-relaxed">
-          The moon — precision, calm, and unwavering attention to detail.
-        </p>
-      </div>
-
-      <!-- Apolo -->
-      <div data-reveal class="group text-center p-8 rounded-2xl bg-carbon/30 border border-shadow/40 hover:border-apollo/30 transition-all duration-300">
-        <div class="w-16 h-16 rounded-2xl bg-apollo/10 border border-apollo/20 flex items-center justify-center mx-auto mb-5">
-          <span class="text-2xl">☀️</span>
-        </div>
-        <h3 class="font-heading text-lg font-semibold text-marble mb-1">Apolo</h3>
-        <p class="text-xs tracking-widest text-apollo/60 uppercase mb-3 font-body">AI Assistant</p>
-        <p class="text-artemis/40 text-sm font-body leading-relaxed">
-          The sun — energy, action, and relentless drive to ship.
-        </p>
-      </div>
+      ))}
     </div>
   </div>
 </section>

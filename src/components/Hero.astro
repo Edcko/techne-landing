@@ -1,11 +1,9 @@
 ---
 ---
 
-<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-  <!-- Background constellation -->
-  <div class="absolute inset-0 pointer-events-none">
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16" data-theme-bg>
+  <div class="absolute inset-0 pointer-events-none constellation-bg">
     <svg class="w-full h-full" viewBox="0 0 1200 800" fill="none" preserveAspectRatio="xMidYMid slice">
-      <!-- Nodes -->
       <circle class="constellation-node" cx="100" cy="150" r="2" fill="#E8963E" opacity="0.4"/>
       <circle class="constellation-node" cx="250" cy="80" r="1.5" fill="#B8C4D8" opacity="0.3"/>
       <circle class="constellation-node" cx="400" cy="200" r="2" fill="#C49A5A" opacity="0.3"/>
@@ -21,7 +19,6 @@
       <circle class="constellation-node" cx="550" cy="100" r="1" fill="#9AACCC" opacity="0.2"/>
       <circle class="constellation-node" cx="650" cy="450" r="1.5" fill="#E8963E" opacity="0.15"/>
       <circle class="constellation-node" cx="200" cy="550" r="1" fill="#C49A5A" opacity="0.2"/>
-      <!-- Connecting lines -->
       <line x1="100" y1="150" x2="250" y2="80" stroke="#1E2233" stroke-width="0.5" opacity="0.5"/>
       <line x1="250" y1="80" x2="400" y2="200" stroke="#1E2233" stroke-width="0.5" opacity="0.4"/>
       <line x1="400" y1="200" x2="550" y2="100" stroke="#1E2233" stroke-width="0.3" opacity="0.3"/>
@@ -34,21 +31,14 @@
     </svg>
   </div>
 
-  <!-- Radial glow behind eclipse -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full opacity-15"
-    style="background: radial-gradient(circle, #C49A5A 0%, #E8963E22 40%, transparent 70%);">
-  </div>
-
-  <!-- Secondary ambient glow -->
-  <div class="absolute top-1/3 right-1/4 w-[400px] h-[400px] rounded-full opacity-5"
-    style="background: radial-gradient(circle, #B8C4D8 0%, transparent 70%);">
-  </div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full hero-glow"
+    style="background: radial-gradient(circle, #C49A5A 0%, #E8963E22 40%, transparent 70%);"></div>
+  <div class="absolute top-1/3 right-1/4 w-[400px] h-[400px] rounded-full hero-glow"
+    style="background: radial-gradient(circle, #B8C4D8 0%, transparent 70%);"></div>
 
   <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-    <!-- Eclipse Symbol -->
     <div id="hero-eclipse" class="mx-auto mb-10 animate-float">
       <svg width="150" height="150" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto">
-        <!-- Sun rays -->
         <defs>
           <linearGradient id="sunGrad" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stop-color="#E8963E"/>
@@ -62,108 +52,70 @@
             <stop offset="0%" stop-color="#C49A5A" stop-opacity="0.15"/>
             <stop offset="100%" stop-color="#C49A5A" stop-opacity="0"/>
           </radialGradient>
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-            <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
+          <filter id="glow"><feGaussianBlur stdDeviation="2" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
         </defs>
-
-        <!-- Outer glow -->
         <circle cx="70" cy="70" r="68" fill="url(#glowGrad)"/>
-
-        <!-- Sun (left half) -->
-        <clipPath id="sunClip">
-          <rect x="0" y="0" width="70" height="140"/>
-        </clipPath>
+        <clipPath id="sunClip"><rect x="0" y="0" width="70" height="140"/></clipPath>
         <g clip-path="url(#sunClip)" filter="url(#glow)">
           <circle cx="70" cy="70" r="45" fill="url(#sunGrad)"/>
-          <!-- Sun rays -->
           <line x1="70" y1="10" x2="70" y2="25" stroke="#E8963E" stroke-width="2" opacity="0.6"/>
           <line x1="70" y1="115" x2="70" y2="130" stroke="#E8963E" stroke-width="2" opacity="0.6"/>
           <line x1="15" y1="70" x2="25" y2="70" stroke="#E8963E" stroke-width="2" opacity="0.4"/>
           <line x1="25" y1="30" x2="33" y2="38" stroke="#E8963E" stroke-width="1.5" opacity="0.4"/>
           <line x1="25" y1="110" x2="33" y2="102" stroke="#E8963E" stroke-width="1.5" opacity="0.4"/>
         </g>
-
-        <!-- Moon (right half) -->
-        <clipPath id="moonClip">
-          <rect x="70" y="0" width="70" height="140"/>
-        </clipPath>
+        <clipPath id="moonClip"><rect x="70" y="0" width="70" height="140"/></clipPath>
         <g clip-path="url(#moonClip)" filter="url(#glow)">
-          <circle cx="70" cy="70" r="45" fill="#0B0D17"/>
+          <circle cx="70" cy="70" r="45" data-theme-eclipse-bg/>
           <path d="M70 25 A45 45 0 0 1 70 115 A35 35 0 0 0 70 25" fill="url(#moonGrad)"/>
-          <!-- Moon details -->
           <circle cx="90" cy="55" r="4" fill="#9AACCC" opacity="0.2"/>
           <circle cx="100" cy="80" r="3" fill="#9AACCC" opacity="0.15"/>
           <circle cx="85" cy="95" r="2.5" fill="#9AACCC" opacity="0.1"/>
         </g>
-
-        <!-- Center blend -->
         <circle cx="70" cy="70" r="45" fill="none" stroke="#C49A5A" stroke-width="1" opacity="0.3"/>
-
-        <!-- Border -->
         <rect x="2" y="2" width="136" height="136" rx="24" stroke="#1E2233" stroke-width="1.5" fill="none"/>
       </svg>
     </div>
 
-    <!-- Title -->
     <h1 class="font-heading text-6xl sm:text-7xl md:text-8xl font-bold tracking-tight mb-6">
       <span class="text-gradient-gold">Techne</span>
     </h1>
 
-    <!-- Tagline -->
-    <p class="font-body font-light text-xl sm:text-2xl tracking-widest text-artemis/60 mb-8 uppercase">
-      Masterful craft. Infinite solutions.
-    </p>
+    <p class="font-body font-light text-xl sm:text-2xl tracking-widest uppercase mb-8" style="color: rgba(184,196,216,0.6);" data-theme-muted data-i18n="hero.tagline">Masterful craft. Infinite solutions.</p>
 
-    <!-- Subtitle -->
-    <p class="text-marble/60 text-lg max-w-xl mx-auto mb-12 font-body leading-relaxed">
-      Software development studio where precision meets creativity. 
-      We build web apps, mobile experiences, and intelligent automations.
-    </p>
+    <p class="text-lg max-w-xl mx-auto mb-12 font-body leading-relaxed" style="color: rgba(234,236,239,0.6);" data-theme-muted data-i18n="hero.subtitle">Software development studio where precision meets creativity. We build web apps, mobile experiences, and intelligent automations.</p>
 
-    <!-- CTAs -->
     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-      <a
-        href="#portfolio"
-        class="group inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-apollo text-obsidian font-heading font-semibold text-sm tracking-wide hover:bg-solar transition-all duration-200 cursor-pointer shadow-lg shadow-apollo/20 hover:shadow-apollo/30"
-      >
-        View our work
+      <a href="#portfolio"
+        class="group inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-apollo text-obsidian font-heading font-semibold text-sm tracking-wide hover:bg-solar transition-all duration-200 cursor-pointer shadow-lg shadow-apollo/20">
+        <span data-i18n="hero.cta1">View our work</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-200 group-hover:translate-x-1">
           <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
         </svg>
       </a>
-      <a
-        href="#contact"
-        class="px-8 py-3.5 rounded-xl border border-artemis/20 text-artemis/80 font-heading font-medium text-sm tracking-wide hover:border-artemis/40 hover:text-marble hover:bg-carbon/50 transition-all duration-200 cursor-pointer"
-      >
-        Start a project
-      </a>
+      <a href="#contact"
+        class="px-8 py-3.5 rounded-xl border font-heading font-medium text-sm tracking-wide cursor-pointer transition-all duration-200 hover:bg-carbon/50"
+        data-theme-outline data-i18n="hero.cta2">Start a project</a>
     </div>
 
-    <!-- Stats -->
     <div class="mt-20 grid grid-cols-3 gap-8 max-w-md mx-auto">
       <div class="text-center">
-        <p class="font-heading text-2xl sm:text-3xl font-bold text-gradient-gold">24/7</p>
-        <p class="text-artemis/40 text-xs mt-1 font-body tracking-wide uppercase">Always on</p>
+        <p class="font-heading text-2xl sm:text-3xl font-bold text-gradient-gold" data-i18n="hero.stat1">24/7</p>
+        <p class="text-xs mt-1 font-body tracking-wide uppercase" style="color: rgba(184,196,216,0.4);" data-theme-muted data-i18n="hero.stat1label">Always on</p>
       </div>
       <div class="text-center">
-        <p class="font-heading text-2xl sm:text-3xl font-bold text-gradient-gold">Full Stack</p>
-        <p class="text-artemis/40 text-xs mt-1 font-body tracking-wide uppercase">End to end</p>
+        <p class="font-heading text-2xl sm:text-3xl font-bold text-gradient-gold" data-i18n="hero.stat2">Full Stack</p>
+        <p class="text-xs mt-1 font-body tracking-wide uppercase" style="color: rgba(184,196,216,0.4);" data-theme-muted data-i18n="hero.stat2label">End to end</p>
       </div>
       <div class="text-center">
-        <p class="font-heading text-2xl sm:text-3xl font-bold text-gradient-gold">Fast</p>
-        <p class="text-artemis/40 text-xs mt-1 font-body tracking-wide uppercase">Delivery</p>
+        <p class="font-heading text-2xl sm:text-3xl font-bold text-gradient-gold" data-i18n="hero.stat3">Fast</p>
+        <p class="text-xs mt-1 font-body tracking-wide uppercase" style="color: rgba(184,196,216,0.4);" data-theme-muted data-i18n="hero.stat3label">Delivery</p>
       </div>
     </div>
   </div>
 
-  <!-- Scroll indicator -->
   <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
-    <span class="text-xs tracking-widest text-artemis/50 font-body">SCROLL</span>
+    <span class="text-xs tracking-widest font-body" style="color: rgba(184,196,216,0.5);" data-theme-muted data-i18n="scroll">SCROLL</span>
     <div class="w-px h-8 bg-gradient-to-b from-eclipse to-transparent"></div>
   </div>
 </section>

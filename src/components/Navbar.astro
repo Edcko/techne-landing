@@ -1,72 +1,105 @@
 ---
 const navLinks = [
-  { label: 'Services', href: '#services' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { key: 'nav.services', href: '#services' },
+  { key: 'nav.portfolio', href: '#portfolio' },
+  { key: 'nav.about', href: '#about' },
+  { key: 'nav.contact', href: '#contact' },
 ];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-obsidian/50 backdrop-blur-md border-b border-transparent">
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-obsidian/50 backdrop-blur-md border-b border-transparent" data-theme-nav>
   <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
     <a href="#" class="flex items-center gap-3 group cursor-pointer">
-      <!-- Mini eclipse logo -->
       <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="transition-transform duration-300 group-hover:scale-110">
         <circle cx="24" cy="32" r="18" fill="#E8963E" opacity="0.9"/>
-        <circle cx="40" cy="32" r="16" fill="#0B0D17"/>
+        <circle cx="40" cy="32" r="16" data-theme-eclipse-bg/>
         <path d="M40 16 A16 16 0 0 1 40 48 A16 16 0 0 0 40 16" fill="#B8C4D8" opacity="0.8"/>
         <rect x="4" y="4" width="56" height="56" rx="12" stroke="#1E2233" stroke-width="1.5" fill="none"/>
       </svg>
-      <span class="font-heading font-semibold text-lg text-marble tracking-tight">Techne</span>
+      <span class="font-heading font-semibold text-lg tracking-tight" data-theme-text>Techne</span>
     </a>
 
     <!-- Desktop nav -->
-    <div class="hidden md:flex items-center gap-8">
+    <div class="hidden md:flex items-center gap-6">
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class="text-sm text-artemis/60 hover:text-marble transition-colors duration-200 cursor-pointer font-body"
+          class="text-sm transition-colors duration-200 cursor-pointer font-body"
+          data-theme-nav-text
+          data-i18n={link.key}
         >
-          {link.label}
+          {link.key}
         </a>
       ))}
+
+      <!-- Theme toggle -->
+      <button
+        id="theme-toggle"
+        class="p-2 rounded-lg cursor-pointer transition-colors duration-200 hover:bg-carbon/30"
+        aria-label="Toggle theme"
+      >
+        <!-- Sun icon (shown in dark mode) -->
+        <svg id="icon-sun" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="#E8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon (shown in light mode) -->
+        <svg id="icon-moon" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#B8C4D8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+
+      <!-- Language toggle -->
+      <button
+        id="lang-toggle"
+        class="text-xs px-3 py-1.5 rounded-lg cursor-pointer transition-all duration-200 border font-medium"
+        data-theme-cta
+      >
+        <span id="lang-label">EN</span>
+      </button>
+
+      <!-- CTA -->
       <a
         href="#contact"
-        class="text-sm px-5 py-2 rounded-lg bg-apollo/10 text-apollo border border-apollo/20 hover:bg-apollo/20 hover:border-apollo/40 transition-all duration-200 cursor-pointer font-medium"
+        class="text-sm px-5 py-2 rounded-lg cursor-pointer font-medium transition-all duration-200"
+        data-theme-cta
+        data-i18n="nav.cta"
       >
         Get in touch
       </a>
     </div>
 
-    <!-- Mobile menu button -->
-    <button
-      id="mobile-menu-btn"
-      class="md:hidden p-2 text-artemis/70 hover:text-marble transition-colors cursor-pointer"
-      aria-label="Toggle menu"
-    >
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-        <line x1="3" y1="6" x2="21" y2="6"/>
-        <line x1="3" y1="12" x2="21" y2="12"/>
-        <line x1="3" y1="18" x2="21" y2="18"/>
-      </svg>
-    </button>
+    <!-- Mobile: theme, lang, menu -->
+    <div class="md:hidden flex items-center gap-2">
+      <button id="theme-toggle-mobile" class="p-2 rounded-lg cursor-pointer" aria-label="Toggle theme">
+        <svg class="icon-sun-m w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="#E8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon-moon-m w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#B8C4D8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+      <button id="lang-toggle-mobile" class="text-xs px-2 py-1.5 rounded-lg cursor-pointer border" data-theme-cta>
+        <span class="lang-label-m">EN</span>
+      </button>
+      <button id="mobile-menu-btn" class="p-2 cursor-pointer" aria-label="Toggle menu" data-theme-nav-text>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
   </nav>
 
   <!-- Mobile menu -->
   <div id="mobile-menu" class="md:hidden hidden glass">
     <div class="px-6 py-4 flex flex-col gap-3">
       {navLinks.map((link) => (
-        <a
-          href={link.href}
-          class="text-sm text-artemis/70 hover:text-marble transition-colors py-2 cursor-pointer font-body mobile-nav-link"
-        >
-          {link.label}
+        <a href={link.href} class="text-sm py-2 cursor-pointer font-body mobile-nav-link" data-theme-nav-text data-i18n={link.key}>
+          {link.key}
         </a>
       ))}
-      <a
-        href="#contact"
-        class="text-sm px-5 py-2.5 rounded-lg bg-apollo/10 text-apollo border border-apollo/20 hover:bg-apollo/20 transition-all text-center cursor-pointer font-medium mt-2 mobile-nav-link"
-      >
+      <a href="#contact" class="text-sm px-5 py-2.5 rounded-lg text-center cursor-pointer font-medium mt-2 mobile-nav-link" data-theme-cta data-i18n="nav.cta">
         Get in touch
       </a>
     </div>
@@ -74,14 +107,11 @@ const navLinks = [
 </header>
 
 <script>
+  // Mobile menu
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
-  btn?.addEventListener('click', () => {
-    menu?.classList.toggle('hidden');
-  });
+  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
   document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      menu?.classList.add('hidden');
-    });
+    link.addEventListener('click', () => menu?.classList.add('hidden'));
   });
 </script>
