@@ -1,12 +1,13 @@
 ---
 const navLinks = [
   { label: 'Services', href: '#services' },
+  { label: 'Portfolio', href: '#portfolio' },
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-obsidian/70 border-b border-shadow/50">
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-obsidian/50 backdrop-blur-md border-b border-transparent">
   <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
     <a href="#" class="flex items-center gap-3 group cursor-pointer">
       <!-- Mini eclipse logo -->
@@ -24,7 +25,7 @@ const navLinks = [
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class="text-sm text-artemis/70 hover:text-marble transition-colors duration-200 cursor-pointer font-body"
+          class="text-sm text-artemis/60 hover:text-marble transition-colors duration-200 cursor-pointer font-body"
         >
           {link.label}
         </a>
@@ -52,7 +53,7 @@ const navLinks = [
   </nav>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="md:hidden hidden bg-carbon/95 backdrop-blur-lg border-t border-shadow/50">
+  <div id="mobile-menu" class="md:hidden hidden glass">
     <div class="px-6 py-4 flex flex-col gap-3">
       {navLinks.map((link) => (
         <a
@@ -78,7 +79,6 @@ const navLinks = [
   btn?.addEventListener('click', () => {
     menu?.classList.toggle('hidden');
   });
-  // Close on link click
   document.querySelectorAll('.mobile-nav-link').forEach(link => {
     link.addEventListener('click', () => {
       menu?.classList.add('hidden');

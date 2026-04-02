@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://techne.ascencia.com/techne/sitemap.xml

@@ -18,25 +18,36 @@
       <circle class="constellation-node" cx="700" cy="650" r="1.5" fill="#B8C4D8" opacity="0.3"/>
       <circle class="constellation-node" cx="50" cy="700" r="2" fill="#C49A5A" opacity="0.2"/>
       <circle class="constellation-node" cx="950" cy="700" r="1.5" fill="#E8963E" opacity="0.3"/>
+      <circle class="constellation-node" cx="550" cy="100" r="1" fill="#9AACCC" opacity="0.2"/>
+      <circle class="constellation-node" cx="650" cy="450" r="1.5" fill="#E8963E" opacity="0.15"/>
+      <circle class="constellation-node" cx="200" cy="550" r="1" fill="#C49A5A" opacity="0.2"/>
       <!-- Connecting lines -->
       <line x1="100" y1="150" x2="250" y2="80" stroke="#1E2233" stroke-width="0.5" opacity="0.5"/>
       <line x1="250" y1="80" x2="400" y2="200" stroke="#1E2233" stroke-width="0.5" opacity="0.4"/>
+      <line x1="400" y1="200" x2="550" y2="100" stroke="#1E2233" stroke-width="0.3" opacity="0.3"/>
       <line x1="900" y1="120" x2="1050" y2="250" stroke="#1E2233" stroke-width="0.5" opacity="0.4"/>
       <line x1="800" y1="350" x2="1050" y2="250" stroke="#1E2233" stroke-width="0.5" opacity="0.3"/>
+      <line x1="800" y1="350" x2="650" y2="450" stroke="#1E2233" stroke-width="0.3" opacity="0.3"/>
       <line x1="700" y1="650" x2="950" y2="700" stroke="#1E2233" stroke-width="0.5" opacity="0.3"/>
       <line x1="300" y1="600" x2="150" y2="400" stroke="#1E2233" stroke-width="0.5" opacity="0.3"/>
+      <line x1="300" y1="600" x2="200" y2="550" stroke="#1E2233" stroke-width="0.3" opacity="0.3"/>
     </svg>
   </div>
 
   <!-- Radial glow behind eclipse -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-20"
-    style="background: radial-gradient(circle, #C49A5A 0%, transparent 70%);">
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full opacity-15"
+    style="background: radial-gradient(circle, #C49A5A 0%, #E8963E22 40%, transparent 70%);">
+  </div>
+
+  <!-- Secondary ambient glow -->
+  <div class="absolute top-1/3 right-1/4 w-[400px] h-[400px] rounded-full opacity-5"
+    style="background: radial-gradient(circle, #B8C4D8 0%, transparent 70%);">
   </div>
 
   <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
     <!-- Eclipse Symbol -->
     <div id="hero-eclipse" class="mx-auto mb-10 animate-float">
-      <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto">
+      <svg width="150" height="150" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto">
         <!-- Sun rays -->
         <defs>
           <linearGradient id="sunGrad" x1="0" y1="0" x2="1" y2="0">
@@ -51,6 +62,13 @@
             <stop offset="0%" stop-color="#C49A5A" stop-opacity="0.15"/>
             <stop offset="100%" stop-color="#C49A5A" stop-opacity="0"/>
           </radialGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
         </defs>
 
         <!-- Outer glow -->
@@ -60,7 +78,7 @@
         <clipPath id="sunClip">
           <rect x="0" y="0" width="70" height="140"/>
         </clipPath>
-        <g clip-path="url(#sunClip)">
+        <g clip-path="url(#sunClip)" filter="url(#glow)">
           <circle cx="70" cy="70" r="45" fill="url(#sunGrad)"/>
           <!-- Sun rays -->
           <line x1="70" y1="10" x2="70" y2="25" stroke="#E8963E" stroke-width="2" opacity="0.6"/>
@@ -74,7 +92,7 @@
         <clipPath id="moonClip">
           <rect x="70" y="0" width="70" height="140"/>
         </clipPath>
-        <g clip-path="url(#moonClip)">
+        <g clip-path="url(#moonClip)" filter="url(#glow)">
           <circle cx="70" cy="70" r="45" fill="#0B0D17"/>
           <path d="M70 25 A45 45 0 0 1 70 115 A35 35 0 0 0 70 25" fill="url(#moonGrad)"/>
           <!-- Moon details -->
@@ -110,17 +128,36 @@
     <!-- CTAs -->
     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
       <a
-        href="#services"
-        class="px-8 py-3.5 rounded-xl bg-apollo text-obsidian font-heading font-semibold text-sm tracking-wide hover:bg-solar transition-colors duration-200 cursor-pointer shadow-lg shadow-apollo/20"
+        href="#portfolio"
+        class="group inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-apollo text-obsidian font-heading font-semibold text-sm tracking-wide hover:bg-solar transition-all duration-200 cursor-pointer shadow-lg shadow-apollo/20 hover:shadow-apollo/30"
       >
-        Explore services
+        View our work
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-200 group-hover:translate-x-1">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
       </a>
       <a
         href="#contact"
-        class="px-8 py-3.5 rounded-xl border border-artemis/20 text-artemis/80 font-heading font-medium text-sm tracking-wide hover:border-artemis/40 hover:text-marble transition-all duration-200 cursor-pointer"
+        class="px-8 py-3.5 rounded-xl border border-artemis/20 text-artemis/80 font-heading font-medium text-sm tracking-wide hover:border-artemis/40 hover:text-marble hover:bg-carbon/50 transition-all duration-200 cursor-pointer"
       >
         Start a project
       </a>
+    </div>
+
+    <!-- Stats -->
+    <div class="mt-20 grid grid-cols-3 gap-8 max-w-md mx-auto">
+      <div class="text-center">
+        <p class="font-heading text-2xl sm:text-3xl font-bold text-gradient-gold">24/7</p>
+        <p class="text-artemis/40 text-xs mt-1 font-body tracking-wide uppercase">Always on</p>
+      </div>
+      <div class="text-center">
+        <p class="font-heading text-2xl sm:text-3xl font-bold text-gradient-gold">Full Stack</p>
+        <p class="text-artemis/40 text-xs mt-1 font-body tracking-wide uppercase">End to end</p>
+      </div>
+      <div class="text-center">
+        <p class="font-heading text-2xl sm:text-3xl font-bold text-gradient-gold">Fast</p>
+        <p class="text-artemis/40 text-xs mt-1 font-body tracking-wide uppercase">Delivery</p>
+      </div>
     </div>
   </div>
 

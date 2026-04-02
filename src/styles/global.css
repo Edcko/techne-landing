@@ -24,6 +24,7 @@
   --animate-fade-in: fade-in 0.6s ease-out both;
   --animate-glow-pulse: glow-pulse 3s ease-in-out infinite;
   --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s ease-in-out infinite;
 
   @keyframes fade-up {
     from { opacity: 0; transform: translateY(2rem); }
@@ -44,6 +45,11 @@
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
   }
+
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
 }
 
 /* Base */
@@ -62,6 +68,44 @@
   ::selection {
     background-color: rgba(196, 154, 90, 0.4);
     color: var(--color-marble);
+  }
+
+  /* Glassmorphism utility classes */
+  .glass {
+    background: rgba(18, 21, 31, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(30, 34, 51, 0.5);
+  }
+
+  .glass-subtle {
+    background: rgba(18, 21, 31, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(30, 34, 51, 0.3);
+  }
+
+  /* Navbar scrolled state */
+  header.scrolled {
+    background: rgba(11, 13, 23, 0.85) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom-color: rgba(30, 34, 51, 0.8);
+  }
+
+  /* Smooth transitions for interactive elements */
+  a, button {
+    transition: all 0.2s ease;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
