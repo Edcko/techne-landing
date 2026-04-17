@@ -3,22 +3,66 @@
 
 <section id="contact" data-animate class="py-32 px-6 relative" data-theme-bg>
   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl"><div class="line-glow opacity-20"></div></div>
-  <div class="max-w-3xl mx-auto text-center">
-    <div data-reveal>
+  <div class="max-w-2xl mx-auto">
+    <div class="text-center mb-12" data-reveal>
       <span class="text-xs tracking-[0.3em] uppercase mb-4 block font-body" style="color: rgba(196,154,90,0.6);" data-i18n="contact.label">Let's build</span>
       <h2 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight mb-6" data-theme-text data-i18n="contact.title">Start a project</h2>
       <div class="w-16 h-px bg-gradient-to-r from-apollo to-artemis mx-auto mb-8"></div>
+      <p class="text-lg font-body leading-relaxed" data-theme-muted data-i18n="contact.subtitle">Have an idea? Need a technical partner?</p>
     </div>
-    <p data-reveal class="text-lg font-body leading-relaxed mb-12 max-w-xl mx-auto" data-theme-muted data-i18n="contact.subtitle">Have an idea? Need a technical partner?</p>
-    <div data-reveal class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-      <a href="mailto:hello@techne.ascencia.com"
-        class="group inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-apollo text-obsidian font-heading font-semibold text-sm tracking-wide hover:bg-solar transition-all duration-200 cursor-pointer shadow-lg shadow-apollo/20">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+
+    <form id="contact-form" class="space-y-6" data-reveal>
+      <div>
+        <label for="contact-name" class="block text-sm font-heading font-medium mb-2" data-theme-text data-i18n="form.name">Name</label>
+        <input type="text" id="contact-name" name="name" required
+          class="w-full px-4 py-3 rounded-xl text-sm font-body outline-none transition-all duration-200 focus:ring-2 focus:ring-apollo/50"
+          style="background: rgba(18,21,31,0.8); border: 1px solid rgba(30,34,51,0.5); color: var(--color-marble);"
+          data-theme-input
+          data-i18n-placeholder="form.placeholder.name"
+          placeholder="Your name">
+      </div>
+      <div>
+        <label for="contact-email" class="block text-sm font-heading font-medium mb-2" data-theme-text data-i18n="form.email">Email</label>
+        <input type="email" id="contact-email" name="email" required
+          class="w-full px-4 py-3 rounded-xl text-sm font-body outline-none transition-all duration-200 focus:ring-2 focus:ring-apollo/50"
+          style="background: rgba(18,21,31,0.8); border: 1px solid rgba(30,34,51,0.5); color: var(--color-marble);"
+          data-theme-input
+          data-i18n-placeholder="form.placeholder.email"
+          placeholder="you@example.com">
+      </div>
+      <div>
+        <label for="contact-project" class="block text-sm font-heading font-medium mb-2" data-theme-text data-i18n="form.project">Project</label>
+        <textarea id="contact-project" name="project" rows="4" required
+          class="w-full px-4 py-3 rounded-xl text-sm font-body outline-none transition-all duration-200 resize-none focus:ring-2 focus:ring-apollo/50"
+          style="background: rgba(18,21,31,0.8); border: 1px solid rgba(30,34,51,0.5); color: var(--color-marble);"
+          data-theme-input
+          data-i18n-placeholder="form.placeholder.project"
+          placeholder="Tell us about your project..."></textarea>
+      </div>
+      <button type="submit"
+        class="w-full px-8 py-3.5 rounded-xl bg-apollo text-obsidian font-heading font-semibold text-sm tracking-wide hover:bg-solar transition-all duration-200 cursor-pointer shadow-lg shadow-apollo/20"
+        data-i18n="form.submit">Send message</button>
+    </form>
+
+    <div id="contact-success" class="hidden text-center py-8">
+      <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(232,150,62,0.15); border: 1px solid rgba(232,150,62,0.3);">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
         </svg>
-        <span data-i18n="contact.cta">hello@techne.ascencia.com</span>
-      </a>
+      </div>
+      <p class="font-heading text-xl font-semibold mb-2" data-theme-text data-i18n="form.success">Message sent!</p>
     </div>
-    <p data-reveal class="mt-16 text-sm font-body" data-theme-muted data-i18n="contact.trust">Fast response. No obligations.</p>
+
+    <p class="text-center mt-12 text-sm font-body" data-theme-muted data-i18n="contact.trust">Fast response. No obligations.</p>
   </div>
 </section>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const success = document.getElementById('contact-success');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    form.classList.add('hidden');
+    success?.classList.remove('hidden');
+  });
+</script>
