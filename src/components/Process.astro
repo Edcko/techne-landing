@@ -1,9 +1,9 @@
 ---
 const steps = [
-  { accent: '#E8963E', bgColor: 'rgba(232,150,62,0.1)', borderColor: 'rgba(232,150,62,0.2)' },
-  { accent: '#C49A5A', bgColor: 'rgba(196,154,90,0.1)', borderColor: 'rgba(196,154,90,0.2)' },
-  { accent: '#B8C4D8', bgColor: 'rgba(184,196,216,0.1)', borderColor: 'rgba(184,196,216,0.2)' },
-  { accent: '#9AACCC', bgColor: 'rgba(154,172,204,0.1)', borderColor: 'rgba(154,172,204,0.2)' },
+  { accent: '#E8963E' },
+  { accent: '#C49A5A' },
+  { accent: '#B8C4D8' },
+  { accent: '#9AACCC' },
 ];
 ---
 
@@ -11,7 +11,7 @@ const steps = [
   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl"><div class="line-glow opacity-20"></div></div>
   <div class="max-w-5xl mx-auto">
     <div class="text-center mb-20" data-reveal>
-      <span class="text-xs tracking-[0.3em] uppercase mb-4 block font-body" style="color: rgba(196,154,90,0.6);" data-i18n="process.label">How we work</span>
+      <span class="text-xs tracking-[0.3em] uppercase mb-4 block font-body" data-theme-label data-i18n="process.label">How we work</span>
       <h2 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight mb-6" data-theme-text data-i18n="process.title">Our Process</h2>
       <div class="w-16 h-px bg-gradient-to-r from-apollo to-artemis mx-auto"></div>
     </div>
@@ -19,9 +19,8 @@ const steps = [
       {steps.map((step, i) => (
         <div data-reveal class="group relative p-8 rounded-2xl transition-all duration-300" data-theme-card>
           <div class="flex items-start gap-5">
-            <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300"
-              style={`background: ${step.bgColor}; border: 1px solid ${step.borderColor};`}>
-              <span class="font-heading font-bold text-lg" style={`color: ${step.accent};`}>{i + 1}</span>
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 data-theme-card">
+              <span class="font-heading font-bold text-lg text-apollo">{i + 1}</span>
             </div>
             <div>
               <h3 class="font-heading text-xl font-semibold mb-3" data-theme-text data-i18n={`process.step${i+1}title`}></h3>

@@ -56,7 +56,6 @@
 /* Base */
 @layer base {
   html {
-    scroll-behavior: smooth;
   }
 
   body {
@@ -159,7 +158,7 @@
   }
 
   [data-theme-muted] {
-    color: rgba(184, 196, 216, 0.5);
+    color: rgba(184, 196, 216, 0.7);
     transition: color 0.4s ease;
   }
   body.light [data-theme-muted] {
@@ -202,6 +201,38 @@
   body.light [data-theme-outline] {
     border-color: rgba(26, 26, 46, 0.2);
     color: var(--color-ink);
+  }
+
+  [data-theme-muted-bright] {
+    color: rgba(184, 196, 216, 0.6);
+    transition: color 0.4s ease;
+  }
+  body.light [data-theme-muted-bright] {
+    color: var(--color-muted-text);
+  }
+
+  [data-theme-subtle] {
+    color: rgba(184, 196, 216, 0.65);
+    transition: color 0.4s ease;
+  }
+  body.light [data-theme-subtle] {
+    color: rgba(90, 90, 122, 0.75);
+  }
+
+  [data-theme-body] {
+    color: rgba(234, 236, 239, 0.6);
+    transition: color 0.4s ease;
+  }
+  body.light [data-theme-body] {
+    color: rgba(26, 26, 46, 0.7);
+  }
+
+  [data-theme-label] {
+    color: rgba(196, 154, 90, 0.7);
+    transition: color 0.4s ease;
+  }
+  body.light [data-theme-label] {
+    color: rgba(180, 120, 40, 0.8);
   }
 
   /* Eclipse SVG theme */
@@ -251,4 +282,12 @@
 @utility line-glow {
   background: linear-gradient(90deg, #E8963E, #C49A5A, #B8C4D8);
   height: 1px;
+}
+
+@utility glow-warm {
+  background: radial-gradient(circle, #C49A5A 0%, rgba(232, 150, 62, 0.13) 40%, transparent 70%);
+}
+
+@utility glow-cool {
+  background: radial-gradient(circle, #B8C4D8 0%, transparent 70%);
 }

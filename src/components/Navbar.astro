@@ -70,7 +70,7 @@ const navLinks = [
 
     <!-- Mobile: theme, lang, menu -->
     <div class="md:hidden flex items-center gap-2">
-      <button id="theme-toggle-mobile" class="p-2 rounded-lg cursor-pointer" aria-label="Toggle theme">
+      <button id="theme-toggle-mobile" class="p-3 rounded-lg cursor-pointer" aria-label="Toggle theme">
         <svg class="icon-sun-m w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="#E8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
         </svg>
@@ -81,7 +81,7 @@ const navLinks = [
       <button id="lang-toggle-mobile" class="text-xs px-2 py-1.5 rounded-lg cursor-pointer border" data-theme-cta>
         <span class="lang-label-m">EN</span>
       </button>
-      <button id="mobile-menu-btn" class="p-2 cursor-pointer" aria-label="Toggle menu" data-theme-nav-text>
+      <button id="mobile-menu-btn" class="p-3 cursor-pointer" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu" data-theme-nav-text>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <line x1="3" y1="6" x2="21" y2="6"/>
           <line x1="3" y1="12" x2="21" y2="12"/>
@@ -92,14 +92,14 @@ const navLinks = [
   </nav>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="md:hidden hidden glass">
+  <div id="mobile-menu" class="md:hidden hidden glass" role="menu" aria-hidden="true">
     <div class="px-6 py-4 flex flex-col gap-3">
       {navLinks.map((link) => (
-        <a href={link.href} class="text-sm py-2 cursor-pointer font-body mobile-nav-link" data-theme-nav-text data-i18n={link.key}>
+        <a href={link.href} class="text-sm py-3 cursor-pointer font-body mobile-nav-link" data-theme-nav-text data-i18n={link.key} role="menuitem">
           {link.key}
         </a>
       ))}
-      <a href="#contact" class="text-sm px-5 py-2.5 rounded-lg text-center cursor-pointer font-medium mt-2 mobile-nav-link" data-theme-cta data-i18n="nav.cta">
+      <a href="#contact" class="text-sm px-5 py-2.5 rounded-lg text-center cursor-pointer font-medium mt-2 mobile-nav-link" data-theme-cta data-i18n="nav.cta" role="menuitem">
         Get in touch
       </a>
     </div>
@@ -107,11 +107,50 @@ const navLinks = [
 </header>
 
 <script>
-  // Mobile menu
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
-  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+  if (!btn || !menu) throw new Error('Navbar: mobile menu elements not found');
+
+  function openMenu() {
+    menu.classList.remove('hidden');
+    btn.setAttribute('aria-expanded', 'true');
+    menu.setAttribute('aria-hidden', 'false');
+    const firstLink = menu.querySelector<HTMLElement>('.mobile-nav-link');
+    firstLink?.focus();
+  }
+
+  function closeMenu() {
+    menu.classList.add('hidden');
+    btn.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
+    btn.focus();
+  }
+
+  btn.addEventListener('click', () => {
+    const isOpen = !menu.classList.contains('hidden');
+    isOpen ? closeMenu() : openMenu();
+  });
+
   document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', () => menu?.classList.add('hidden'));
+    link.addEventListener('click', () => closeMenu());
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+      closeMenu();
+    }
+    if (e.key === 'Tab' && !menu.classList.contains('hidden')) {
+      const focusable = menu.querySelectorAll<HTMLElement>('.mobile-nav-link');
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
   });
 </script>

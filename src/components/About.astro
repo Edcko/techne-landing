@@ -1,8 +1,8 @@
 ---
 const team = [
-  { nameKey: 'about.edname', roleKey: 'about.edrole', descKey: 'about.eddesc', accent: '#C49A5A', emoji: false, icon: 'user' },
-  { nameKey: 'about.artname', roleKey: 'about.artrole', descKey: 'about.artdesc', accent: '#B8C4D8', emoji: '🌙' },
-  { nameKey: 'about.aplname', roleKey: 'about.aplrole', descKey: 'about.apldesc', accent: '#E8963E', emoji: '☀️' },
+  { nameKey: 'about.edname', roleKey: 'about.edrole', descKey: 'about.eddesc', emoji: false, icon: 'user' },
+  { nameKey: 'about.artname', roleKey: 'about.artrole', descKey: 'about.artdesc', emoji: '🌙' },
+  { nameKey: 'about.aplname', roleKey: 'about.aplrole', descKey: 'about.apldesc', emoji: '☀️' },
 ];
 ---
 
@@ -10,7 +10,7 @@ const team = [
   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl"><div class="line-glow opacity-20"></div></div>
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-20" data-reveal>
-      <span class="text-xs tracking-[0.3em] uppercase mb-4 block font-body" style="color: rgba(196,154,90,0.6);" data-i18n="about.label">Who we are</span>
+      <span class="text-xs tracking-[0.3em] uppercase mb-4 block font-body" data-theme-label data-i18n="about.label">Who we are</span>
       <h2 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight mb-6" data-theme-text data-i18n="about.title">About Techne</h2>
       <div class="w-16 h-px bg-gradient-to-r from-apollo to-artemis mx-auto"></div>
     </div>
@@ -24,10 +24,9 @@ const team = [
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
       {team.map((member) => (
         <div data-reveal class="group text-center p-8 rounded-2xl transition-all duration-300" data-theme-card>
-          <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5"
-            style={`background: ${member.accent}15; border: 1px solid ${member.accent}20;`}>
+          <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5 data-theme-card">
             {member.icon === 'user' ? (
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={member.accent} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-apollo">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
               </svg>
             ) : (
@@ -35,7 +34,7 @@ const team = [
             )}
           </div>
           <h3 class="font-heading text-lg font-semibold mb-1" data-theme-text data-i18n={member.nameKey}></h3>
-          <p class="text-xs tracking-widest uppercase mb-3 font-body" style={`color: ${member.accent};`} data-i18n={member.roleKey}></p>
+          <p class="text-xs tracking-widest uppercase mb-3 font-body text-apollo" data-i18n={member.roleKey}></p>
           <p class="text-sm font-body leading-relaxed" data-theme-muted data-i18n={member.descKey}></p>
         </div>
       ))}
