@@ -1,13 +1,12 @@
 ---
+import SectionHeader from './SectionHeader.astro';
 ---
 
 <section id="contact" data-animate class="py-32 px-6 relative" data-theme-bg>
   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl"><div class="line-glow opacity-20"></div></div>
   <div class="max-w-2xl mx-auto">
-    <div class="text-center mb-12" data-reveal>
-      <span class="text-xs tracking-[0.3em] uppercase mb-4 block font-body" data-theme-label data-i18n="contact.label">Let's build</span>
-      <h2 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight mb-6" data-theme-text data-i18n="contact.title">Start a project</h2>
-      <div class="w-16 h-px bg-gradient-to-r from-apollo to-artemis mx-auto mb-8"></div>
+    <SectionHeader label="Let's build" title="Start a project" labelI18n="contact.label" titleI18n="contact.title" class="text-center mb-12" />
+    <div class="text-center mb-8" data-reveal>
       <p class="text-lg font-body leading-relaxed" data-theme-muted data-i18n="contact.subtitle">Have an idea? Need a technical partner?</p>
     </div>
 

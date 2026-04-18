@@ -1,4 +1,6 @@
 ---
+import SectionHeader from './SectionHeader.astro';
+
 const team = [
   { nameKey: 'about.edname', roleKey: 'about.edrole', descKey: 'about.eddesc', emoji: false, icon: 'user' },
   { nameKey: 'about.artname', roleKey: 'about.artrole', descKey: 'about.artdesc', emoji: '🌙' },
@@ -9,11 +11,7 @@ const team = [
 <section id="about" data-animate class="py-32 px-6 relative" data-theme-bg>
   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl"><div class="line-glow opacity-20"></div></div>
   <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-20" data-reveal>
-      <span class="text-xs tracking-[0.3em] uppercase mb-4 block font-body" data-theme-label data-i18n="about.label">Who we are</span>
-      <h2 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight mb-6" data-theme-text data-i18n="about.title">About Techne</h2>
-      <div class="w-16 h-px bg-gradient-to-r from-apollo to-artemis mx-auto"></div>
-    </div>
+    <SectionHeader label="Who we are" title="About Techne" labelI18n="about.label" titleI18n="about.title" />
     <div class="max-w-3xl mx-auto text-center mb-20" data-reveal>
       <p class="text-lg leading-relaxed font-body mb-8" data-theme-muted>
         <span class="font-heading font-semibold text-2xl text-gradient-gold">Τέχνη</span>

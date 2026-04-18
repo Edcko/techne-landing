@@ -1,0 +1,17 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  labelI18n: string;
+  titleI18n: string;
+  class?: string;
+}
+
+const { label, title, labelI18n, titleI18n, class: className = "text-center mb-20" } = Astro.props;
+---
+
+<div class={className} data-reveal>
+  <span class="text-xs tracking-[0.3em] uppercase mb-4 block font-body" data-theme-label data-i18n={labelI18n}>{label}</span>
+  <h2 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight mb-6" data-theme-text data-i18n={titleI18n}>{title}</h2>
+  <div class="w-16 h-px bg-gradient-to-r from-apollo to-artemis mx-auto"></div>
+</div>

@@ -1,4 +1,6 @@
 ---
+import SectionHeader from './SectionHeader.astro';
+
 const projects = [
   { url: 'https://toolsautomotriz.com', accent: '#E8963E', stack: ['Django', 'PostgreSQL', 'Gunicorn', 'REST API'] },
   { url: 'https://publicsecurity.techne.ascencia.com', accent: '#B8C4D8', stack: ['Next.js', 'Drizzle ORM', 'PostgreSQL', 'Real-time'] },
@@ -8,10 +10,8 @@ const projects = [
 <section id="portfolio" data-animate class="py-32 px-6 relative" data-theme-bg>
   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl"><div class="line-glow opacity-20"></div></div>
   <div class="max-w-6xl mx-auto">
+    <SectionHeader label="Our work" title="Featured Projects" labelI18n="portfolio.label" titleI18n="portfolio.title" />
     <div class="text-center mb-20" data-reveal>
-      <span class="text-xs tracking-[0.3em] uppercase mb-4 block font-body" data-theme-label data-i18n="portfolio.label">Our work</span>
-      <h2 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight mb-6" data-theme-text data-i18n="portfolio.title">Featured Projects</h2>
-      <div class="w-16 h-px bg-gradient-to-r from-apollo to-artemis mx-auto mb-6"></div>
       <p class="text-lg font-body max-w-xl mx-auto" data-theme-muted data-i18n="portfolio.subtitle">Real products, real impact. Here are some of the projects we've brought to life.</p>
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">

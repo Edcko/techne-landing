@@ -1,4 +1,6 @@
 ---
+import EclipseLogo from './EclipseLogo.astro';
+
 interface Props {
   title?: string;
   tagline?: string;
@@ -65,43 +67,7 @@ const {
 
   <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
     <div id="hero-eclipse" class="mx-auto mb-10 animate-float">
-      <svg width="150" height="150" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto">
-        <defs>
-          <linearGradient id="sunGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#E8963E"/>
-            <stop offset="100%" stop-color="#C49A5A"/>
-          </linearGradient>
-          <linearGradient id="moonGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#C49A5A"/>
-            <stop offset="100%" stop-color="#B8C4D8"/>
-          </linearGradient>
-          <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#C49A5A" stop-opacity="0.15"/>
-            <stop offset="100%" stop-color="#C49A5A" stop-opacity="0"/>
-          </radialGradient>
-          <filter id="glow"><feGaussianBlur stdDeviation="2" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        </defs>
-        <circle cx="70" cy="70" r="68" fill="url(#glowGrad)"/>
-        <clipPath id="sunClip"><rect x="0" y="0" width="70" height="140"/></clipPath>
-        <g clip-path="url(#sunClip)" filter="url(#glow)">
-          <circle cx="70" cy="70" r="45" fill="url(#sunGrad)"/>
-          <line x1="70" y1="10" x2="70" y2="25" stroke="#E8963E" stroke-width="2" opacity="0.6"/>
-          <line x1="70" y1="115" x2="70" y2="130" stroke="#E8963E" stroke-width="2" opacity="0.6"/>
-          <line x1="15" y1="70" x2="25" y2="70" stroke="#E8963E" stroke-width="2" opacity="0.4"/>
-          <line x1="25" y1="30" x2="33" y2="38" stroke="#E8963E" stroke-width="1.5" opacity="0.4"/>
-          <line x1="25" y1="110" x2="33" y2="102" stroke="#E8963E" stroke-width="1.5" opacity="0.4"/>
-        </g>
-        <clipPath id="moonClip"><rect x="70" y="0" width="70" height="140"/></clipPath>
-        <g clip-path="url(#moonClip)" filter="url(#glow)">
-          <circle cx="70" cy="70" r="45" data-theme-eclipse-bg/>
-          <path d="M70 25 A45 45 0 0 1 70 115 A35 35 0 0 0 70 25" fill="url(#moonGrad)"/>
-          <circle cx="90" cy="55" r="4" fill="#9AACCC" opacity="0.2"/>
-          <circle cx="100" cy="80" r="3" fill="#9AACCC" opacity="0.15"/>
-          <circle cx="85" cy="95" r="2.5" fill="#9AACCC" opacity="0.1"/>
-        </g>
-        <circle cx="70" cy="70" r="45" fill="none" stroke="#C49A5A" stroke-width="1" opacity="0.3"/>
-        <rect x="2" y="2" width="136" height="136" rx="24" stroke="#1E2233" stroke-width="1.5" fill="none"/>
-      </svg>
+      <EclipseLogo size={150} />
     </div>
 
     <h1 class="font-heading text-6xl sm:text-7xl md:text-8xl font-bold tracking-tight mb-6">

@@ -1,4 +1,6 @@
 ---
+import SectionHeader from './SectionHeader.astro';
+
 const steps = [
   { accent: '#E8963E' },
   { accent: '#C49A5A' },
@@ -10,11 +12,7 @@ const steps = [
 <section id="process" data-animate class="py-32 px-6 relative" data-theme-bg>
   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl"><div class="line-glow opacity-20"></div></div>
   <div class="max-w-5xl mx-auto">
-    <div class="text-center mb-20" data-reveal>
-      <span class="text-xs tracking-[0.3em] uppercase mb-4 block font-body" data-theme-label data-i18n="process.label">How we work</span>
-      <h2 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight mb-6" data-theme-text data-i18n="process.title">Our Process</h2>
-      <div class="w-16 h-px bg-gradient-to-r from-apollo to-artemis mx-auto"></div>
-    </div>
+    <SectionHeader label="How we work" title="Our Process" labelI18n="process.label" titleI18n="process.title" />
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {steps.map((step, i) => (
         <div data-reveal class="group relative p-8 rounded-2xl transition-all duration-300" data-theme-card>
